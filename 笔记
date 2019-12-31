@@ -1,0 +1,117 @@
+一、项目介绍：SSM整合
+
+1、架构：   Mybatis、Spring、SpringMVC(SSM)
+	        Spring -4.0.2.RELEASE     Mybatis-3.4.4
+	       文档  -配置文件模板（mapper.xml（mybatis的映射文件）、spring.xml、web.xml）
+			     -页面原型
+
+            三层架构：
+            -持久层-MyBatis
+            -表现层-Spring MVC
+            -业务层-JavaBean
+
+            基于MVC模式：
+            -视图--JSP
+            -模型--JavaBean
+            -控制器-Spring Controller
+
+2、技术点：-Spring IOC 容器 (重点)
+
+           -Spring+Mybatis整合
+
+	       -声明式事务（概念、意义）
+
+	       -Spring 标签库
+
+	       -Spring 拦截器
+
+
+3、功能模块:
+
+	  1.部门信息管理:
+                -员工信息管理
+                -把小单处理
+      2.员工向信息管理:
+
+      3.报销单处理：
+
+
+4.主要角色:
+            -员工
+            -部门经理
+            -总经理
+            -财务
+
+二、项目创建：
+
+    全局定义（oa）
+
+
+    持久层（oa_dao)模型创建：
+            -Mybatis依赖、Spring依赖
+            -Mybatis-Spring整合
+
+
+    业务层（oa_biz）模型创建：
+            -Aspectj依赖AOP依赖
+            -AOP依赖
+
+
+    表现层（oa_web）模型创建：
+            -Servlet依赖
+            -Spring MVC依赖
+
+    包及全局配置：(配置Spring配置文件)
+
+            1.oa_dao:
+                   -dao\entity\global
+                   -数据源、Session工厂、映射器接口
+            2.oa_biz；
+                   -biz
+                   -事务
+            3.oa_web：
+                   -controller\dto\global
+                   -静态资源处理、视图转换器
+                   -SpringMVC加载
+
+
+
+
+
+
+三、   编码过滤器-配置：
+
+         -静态资源配置
+
+         -常量类：
+                    -报销单状态
+                    -处理方式
+                    -职务、职务集合
+                    -需复审额度
+                    -费用类别集合
+
+
+
+四、功能实现：
+                1.部门管理
+                2.员工管理
+                3.登录及个人中心
+                4.报销单处理
+
+
+
+	1.部门管理：
+		-部门信息的增删改查：
+			1.实体类
+			2.dao接口与Sql映射文件
+			3.biz接口
+			4.控制器
+			5.页面
+
+
+
+	2.员工管理：
+	        -员工信息的增删改查
+	        -关注点：
+	                -员工与部门的关联关系
+	                -默认登陆密码
