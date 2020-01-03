@@ -22,11 +22,11 @@
         <property name="suffix" value=".jsp"/>
     </bean> <!--视图转换器配置-->
 
-    <mvc:interceptors>
+    <mvc:interceptors><!--登录拦截器路径配置-->
         <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <bean class="com.imooc.oa.global.LoginInterceptor"/>
+            <mvc:mapping path="/**"/><!--拦截所有路径-->
+            <bean class="com.imooc.oa.global.LoginInterceptor"/><!--登录拦截器路径配置-->
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors><!--登录拦截器路径配置-->
 
 </beans>
