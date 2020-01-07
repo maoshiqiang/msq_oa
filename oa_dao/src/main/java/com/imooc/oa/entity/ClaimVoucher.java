@@ -4,20 +4,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+//报销单
 public class ClaimVoucher {
-    private Integer id;
+    private Integer id;//编号，数据库自动生成
 
-    private String cause;
+    private String cause;//事由
 
-    private String createSn;
+    private String createSn;//创建者，关联员工类
     @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
-    private Date createTime;
+    private Date createTime;//创建时间
 
-    private String nextDealSn;
+    private String nextDealSn;//待处理人，关联员工类
 
-    private Double totalAmount;
+    private Double totalAmount;//总金额
 
-    private String status;
+    private String status;//状态
 
     public Integer getId() {
         return id;

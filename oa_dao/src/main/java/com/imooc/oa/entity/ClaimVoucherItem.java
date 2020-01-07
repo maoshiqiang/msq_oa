@@ -1,15 +1,17 @@
 package com.imooc.oa.entity;
 
+
+//报销单条目
 public class ClaimVoucherItem {
-    private Integer id;
+    private Integer id;//编号
 
-    private Integer claimVoucherId;
+    private Integer claimVoucherId;//报销单编号
 
-    private String item;
+    private String item;//费用类型
 
-    private Double amount;
+    private Double amount;//金额
 
-    private String comment;
+    private String comment;//条目说明
 
     public Integer getId() {
         return id;
