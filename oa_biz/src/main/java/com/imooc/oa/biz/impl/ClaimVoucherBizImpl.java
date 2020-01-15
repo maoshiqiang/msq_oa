@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
-@Service("cliamVoucherBiz")
+@Service("claimVoucherBiz")
 public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
     @Autowired
     private ClaimVoucherDao claimVoucherDao;
@@ -30,7 +30,7 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
     //报销单属性
     public void save(ClaimVoucher claimVoucher, List<ClaimVoucherItem> items) {
         claimVoucher.setCreateTime(new Date());//创建时间
-        claimVoucher.setNextDealSn(claimVoucher.getCreateSn());//待处理人
+        claimVoucher.setNextDealSn(claimVoucher.getCreateSn());//待处理人(创建者)
         claimVoucher.setStatus(Contant.CLAIMVOUCHER_CREATED);//报销单状态：（新创建）
         claimVoucherDao.insert(claimVoucher);
 

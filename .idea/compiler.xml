@@ -6,8 +6,8 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="oa_biz" />
         <module name="oa_dao" />
+        <module name="oa_biz" />
         <module name="oa_web" />
       </profile>
     </annotationProcessing>
@@ -15,7 +15,7 @@
       <module name="oa" target="1.5" />
       <module name="oa_biz" target="1.5" />
       <module name="oa_dao" target="1.5" />
-      <module name="oa_web" target="1.7" />
+      <module name="oa_web" target="1.5" />
     </bytecodeTargetLevel>
   </component>
 </project>

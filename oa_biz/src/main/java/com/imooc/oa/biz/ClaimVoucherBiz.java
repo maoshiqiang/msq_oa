@@ -11,9 +11,9 @@ public interface ClaimVoucherBiz {
 
     void save(ClaimVoucher claimVoucher, List<ClaimVoucherItem> items);//保存报销单
 
-    ClaimVoucher get(int id);//获取报销单编号
-    List<ClaimVoucherItem> getItems(int cvid);//获取报销单条目
-    List<DealRecord> getRecords(int cvid);//获取报销单审核记录
+    ClaimVoucher get(int id);//获取-报销单编号
+    List<ClaimVoucherItem> getItems(int cvid);//获取-报销单条目
+    List<DealRecord> getRecords(int cvid);//获取-报销单审核记录
 
     List<ClaimVoucher> getForSelf(String sn);
     List<ClaimVoucher> getForDeal(String sn);
