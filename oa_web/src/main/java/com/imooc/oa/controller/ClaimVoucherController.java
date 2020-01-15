@@ -44,6 +44,7 @@ public class ClaimVoucherController {
     }
 
     @RequestMapping("/self")
+    //个人报销单，map传递数据，获取当前登录用户。
     public String self(HttpSession session, Map<String,Object> map){
         Employee employee = (Employee)session.getAttribute("employee");
         map.put("list",claimVoucherBiz.getForSelf(employee.getSn()));
@@ -51,6 +52,7 @@ public class ClaimVoucherController {
     }
 
     @RequestMapping("/deal")
+    //获取
     public String deal(HttpSession session, Map<String,Object> map){
         Employee employee = (Employee)session.getAttribute("employee");
         map.put("list",claimVoucherBiz.getForDeal(employee.getSn()));
@@ -58,15 +60,17 @@ public class ClaimVoucherController {
     }
 
     @RequestMapping("/to_update")
+    //去更新-报销单，map传递报销单单号
     public String toUpdate(int id,Map<String,Object> map){
         map.put("items", Contant.getItems());
         ClaimVoucherInfo info =new ClaimVoucherInfo();
-        info.setClaimVoucher(claimVoucherBiz.get(id));
-        info.setItems(claimVoucherBiz.getItems(id));
+        info.setClaimVoucher(claimVoucherBiz.get(id));//获取报销单信息
+        info.setItems(claimVoucherBiz.getItems(id));//获取报销单条目信息
         map.put("info",info);
         return "claim_voucher_update";
     }
     @RequestMapping("/update")
+    //更新-报销单
     public String update(HttpSession session, ClaimVoucherInfo info){
         Employee employee = (Employee)session.getAttribute("employee");
         info.getClaimVoucher().setCreateSn(employee.getSn());
@@ -74,6 +78,7 @@ public class ClaimVoucherController {
         return "redirect:deal";
     }
     @RequestMapping("/submit")
+    //提交-报销单
     public String submit(int id){
         claimVoucherBiz.submit(id);
         return "redirect:deal";

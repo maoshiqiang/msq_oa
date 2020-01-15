@@ -60,38 +60,42 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
         return claimVoucherDao.selectByNextDealSn(sn);
     }
 
+    //修改报销单
     public void update(ClaimVoucher claimVoucher, List<ClaimVoucherItem> items) {
         claimVoucher.setNextDealSn(claimVoucher.getCreateSn());
         claimVoucher.setStatus(Contant.CLAIMVOUCHER_CREATED);
         claimVoucherDao.update(claimVoucher);
 
+        //更新条目集合
         List<ClaimVoucherItem> olds = claimVoucherItemDao.selectByClaimVoucher(claimVoucher.getId());
         for(ClaimVoucherItem old:olds){
             boolean isHave=false;
             for(ClaimVoucherItem item:items){
+                //判断当前获取的条目是否在集合里
                 if(item.getId()==old.getId()){
                     isHave=true;
                     break;
                 }
             }
             if(!isHave){
-                claimVoucherItemDao.delete(old.getId());
+                claimVoucherItemDao.delete(old.getId());//删除不需要的条目
             }
         }
         for(ClaimVoucherItem item:items){
             item.setClaimVoucherId(claimVoucher.getId());
             if(item.getId()>0){
-                claimVoucherItemDao.update(item);
+                claimVoucherItemDao.update(item);//存在-即更新
             }else{
-                claimVoucherItemDao.insert(item);
+                claimVoucherItemDao.insert(item);//不存在-则插入
             }
         }
 
     }
 
+    //提交报销单
     public void submit(int id) {
         ClaimVoucher claimVoucher = claimVoucherDao.select(id);
-        Employee employee = employeeDao.select(claimVoucher.getCreateSn());
+        Employee employee = employeeDao.select(claimVoucher.getCreateSn());//获取创建人
 
         claimVoucher.setStatus(Contant.CLAIMVOUCHER_SUBMIT);
         claimVoucher.setNextDealSn(employeeDao.selectByDepartmentAndPost(employee.getDepartmentSn(), Contant.POST_FM).get(0).getSn());
@@ -107,6 +111,7 @@ public class ClaimVoucherBizImpl implements ClaimVoucherBiz {
         dealRecordDao.insert(dealRecord);
     }
 
+    //报销单记录保存
     public void deal(DealRecord dealRecord) {
         ClaimVoucher claimVoucher = claimVoucherDao.select(dealRecord.getClaimVoucherId());
         Employee employee = employeeDao.select(dealRecord.getDealSn());
